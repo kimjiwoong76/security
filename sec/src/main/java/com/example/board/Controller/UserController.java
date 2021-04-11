@@ -1,11 +1,13 @@
 package com.example.board.Controller;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.board.domain.UserVO;
 import com.example.board.service.UserService;
@@ -13,27 +15,32 @@ import com.example.board.service.UserService;
 @Controller
 @RequestMapping("user/")
 public class UserController {
-
+	
+	@Autowired
 	private UserService userService;
 	
 	@RequestMapping("login")
 	public String login() {
-		System.out.println("Login Page");
+		System.out.println("login page");
 		return "/user/login";
 	}
 	
 	@RequestMapping("loginProc")
-	public void loginProc(UserVO userVO) throws Exception{
-		userService.loginProc(userVO);
+	@ResponseBody
+	public List<UserVO> loginProc(Model model) throws Exception{
+		System.out.println("=======================");
+		System.out.println("=======================");
+		System.out.println("=======================");
+		System.out.println("=======================");
+		List<UserVO> list = userService.loginProc();
+		model.addAttribute("list", list);
+		return list; 
 	}
 	
 	@RequestMapping("join")
-	public void join() {
-		System.out.println("Join Page");
+	@ResponseBody
+	public String join() {
+		return "responsebody 테스트";
 	}
 	
-	@GetMapping("sql")
-	public String sql() {
-		return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-	}
 }

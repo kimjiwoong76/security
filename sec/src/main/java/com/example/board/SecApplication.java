@@ -29,5 +29,6 @@ public class SecApplication {
 		
 		return sessionFactory.getObject();
 	}
+	
 
 }

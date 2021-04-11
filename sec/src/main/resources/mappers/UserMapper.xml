@@ -4,7 +4,7 @@
 
 <mapper namespace="com.example.board.mapper.UserMapper"><!--namespace를 통해 UserDAO와 연결합니다. -->
   		
-  <select id="selectUsers">
+  <select id="selectUsers" resultType="com.example.board.domain.UserVO">
   		select * from user
   </select>
 
